@@ -4,12 +4,14 @@ on:
   push:
     branches:
       - main
+   workflow_dispatch:    
 
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: docker-assignment
   ECR_REGISTRY: 951013217897.dkr.ecr.us-east-1.amazonaws.com
-  IMAGE_TAG: latest
+  IMAGE_TAG: 1.0.0
+  
 
 jobs:
   docker:
