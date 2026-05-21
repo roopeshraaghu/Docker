@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+
+  web:
+    build: .
+    container_name: flask-web
+    ports:
+      - "5000:5000"
+    depends_on:
+      - redis
+      - db
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis-server
+    ports:
+      - "6379:6379"
+
+  db:
+    image: postgres:15-alpine
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: flaskdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
